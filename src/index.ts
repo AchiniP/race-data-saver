@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { setUpDBConnection, closetDBConnection } from './repository/DBConnection';
+import { closetDBConnection } from './repository/DBConnection';
 import Logger from './utils/Logger';
 const LOG = new Logger('index.js');
-import RaceAPIService from './service/RaceAPIService'
+import Service from './service'
 
 
 /**
@@ -11,8 +11,7 @@ import RaceAPIService from './service/RaceAPIService'
  */
 const runWorker = async () => {
   LOG.info("Started the scheduler...");
-  setUpDBConnection();
-  await RaceAPIService.fetchRaceData();
+  Service.runService().catch(err => console.error(err));
 }
 
 /**
