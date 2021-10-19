@@ -6,7 +6,6 @@
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "importHelpers": true,
-    "jsx": "react",
     "alwaysStrict": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,11 +14,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": false,
-    "noImplicitThis": false,
-    "strictNullChecks": false
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "baseUrl": "./",
+    "paths": {
+      "tslib" : ["node_modules/tslib/tslib.d.ts"]
+    }
   },
   "include": [
     "src/**/*",
-    "__tests__/**/*"
+    "test/**/*"
   ]
 }

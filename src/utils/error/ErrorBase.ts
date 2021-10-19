@@ -4,7 +4,7 @@ class ErrorBase extends Error {
   private readonly errorCode: number;
   private readonly httpStatusCode: StatusCodes;
 
-  constructor(message, errorCode, httpStatusCode) {
+  constructor(message: string, errorCode:number, httpStatusCode:StatusCodes) {
     super(message);
 
     this.errorCode = errorCode;

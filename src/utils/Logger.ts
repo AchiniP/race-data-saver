@@ -60,20 +60,8 @@ class Logger {
         appLogger.info(message, { filename: this.filename });
     }
 
-    verbose(message) {
-        appLogger.verbose(message, { filename: this.filename });
-    }
-
     debug(message) {
         appLogger.debug(message, { filename: this.filename });
-    }
-
-    silly(message) {
-        appLogger.silly(message, { filename: this.filename });
-    }
-
-    log(level, message) {
-        appLogger.log(level, message, { filename: this.filename });
     }
 }
 
