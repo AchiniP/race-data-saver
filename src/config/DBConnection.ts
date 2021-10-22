@@ -5,17 +5,15 @@ import ErrorBase from '../utils/error/ErrorBase';
 import ErrorMessages from '../utils/error/ErrorMessages';
 import ErrorCodes from '../utils/error/ErrorCodes';
 import Logger from '../utils/Logger';
+import Config from '../config/AppConfig';
 
 const LOG = new Logger('DBConnection');
-let ENV: string | undefined;
-// eslint-disable-next-line prefer-const
-({ENV} = process.env);
 
 /**
  * Set Up Database Connection
  */
 const setUpDBConnection = ():void => {
-  if (ENV !== 'production') {
+  if (Config.APP_ENV !== 'production') {
     set('debug', true);
   }
   connect(dbConnection.url, dbConnection.options);

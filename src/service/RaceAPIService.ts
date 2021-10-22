@@ -1,27 +1,16 @@
-import axios, {AxiosRequestConfig} from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import Logger from "../utils/Logger";
-import {IRaceEvent} from '../models/RaceEventResponseModel'
 import {AuthResponseData} from '../models/AuthResultModel'
+import {AUTH_REQ_OBJECT, FETCH_DATA_REQ_OBJ} from "../utils/AppConstants";
 
 const LOG = new Logger('RaceApiService');
-let ADMIN_USER_NAME: string | undefined, ADMIN_PASSWORD: string | undefined, EXTERNAL_API: string | undefined;
-// eslint-disable-next-line prefer-const
-({EXTERNAL_API, ADMIN_USER_NAME, ADMIN_PASSWORD} = process.env);
 let TOKEN: string | undefined;
-
-const AUTH_REQ_OBJ: AxiosRequestConfig = {
-  url: `${EXTERNAL_API}/auth`,
-  data: {
-    email: ADMIN_USER_NAME,
-    password: ADMIN_PASSWORD
-  },
-};
 
 /**
  * Fetch Auth Token from external API
  */
 const fetchAuthToken = async ():Promise<void> => {
-  await axios.post<AuthResponseData>(AUTH_REQ_OBJ.url, AUTH_REQ_OBJ.data).then(res => {
+  await axios.request(AUTH_REQ_OBJECT()).then((res:AxiosResponse<AuthResponseData>) => {
     const {data} = res;
     const {token} = data;
     TOKEN = token;
@@ -41,11 +30,7 @@ const fetchRaceData = async ():Promise<any> => {
   if (!TOKEN) {
     await fetchAuthToken();
   }
-  return await axios.get<IRaceEvent>(`${EXTERNAL_API}/results`, {
-    headers: {
-      "Authorization": `Bearer ${TOKEN}`,
-    }
-  });
+  return axios.request(FETCH_DATA_REQ_OBJ(TOKEN));
 }
 
 export default {

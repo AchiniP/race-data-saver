@@ -40,7 +40,6 @@ const initWorkers = async () => {
   handleAPIWorker(apiWorker, dbWorker);
   handleDBWorkerErrors(dbWorker);
   handleAPIWorkerErrors(apiWorker);
-
 }
 
 /*

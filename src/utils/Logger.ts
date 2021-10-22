@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createLogger, format, transports } from 'winston';
+import Config from '../config/AppConfig';
 
 const { colorize, combine, metadata, timestamp, printf } = format;
-
-const {
-    LOG_LEVEL = 'info',
-} = process.env;
 
 /**
  * this customFormat will format the text and color only ERROR message to red
@@ -27,7 +23,7 @@ const changeLevelToUpperCase = format(info => {
 });
 
 const appLogger = createLogger({
-    level: LOG_LEVEL,
+    level: Config.LOG_LEVEL,
     exitOnError: false,
     format: combine(
         changeLevelToUpperCase(),
@@ -49,19 +45,19 @@ class Logger {
         this.filename = filename;
     }
 
-    error(message: string) {
+    error(message: string):void {
         appLogger.error(message, { filename: this.filename });
     }
 
-    warn(message: string) {
+    warn(message: string):void {
         appLogger.warn(message, { filename: this.filename });
     }
 
-    info(message: string) {
+    info(message: string):void {
         appLogger.info(message, { filename: this.filename });
     }
 
-    debug(message: string) {
+    debug(message: string):void {
         appLogger.debug(message, { filename: this.filename });
     }
 }

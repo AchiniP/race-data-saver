@@ -1,11 +1,13 @@
 import * as mongoose from 'mongoose';
 import {IRaceEvent} from "./RaceEventResponseModel";
 
-
-interface todoModelInterface extends mongoose.Model<RaceEventDoc> {
+interface raceModelInterface extends mongoose.Model<RaceEventDoc> {
   build(attr: IRaceEvent): RaceEventDoc
 }
 
+/**
+ * Race Event Interface
+ */
 interface RaceEventDoc extends mongoose.Document {
   event: string;
   horse: {
@@ -15,7 +17,9 @@ interface RaceEventDoc extends mongoose.Document {
   time: number;
 }
 
-
+/**
+ * Race Event DB schema
+ */
 const RaceEventSchema = new mongoose.Schema({
   event: {
     type: String
@@ -37,6 +41,6 @@ RaceEventSchema.statics.build = (attr: IRaceEvent) => {
   return new RaceEventModel(attr)
 }
 
-const RaceEventModel = mongoose.model<RaceEventDoc, todoModelInterface>('race_event', RaceEventSchema)
+const RaceEventModel = mongoose.model<RaceEventDoc, raceModelInterface>('race_event', RaceEventSchema)
 
 export { RaceEventModel }
