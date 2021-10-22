@@ -1,10 +1,11 @@
 import axios, {AxiosRequestConfig} from 'axios';
- import Logger from "../utils/Logger";
+import Logger from "../utils/Logger";
 import {IRaceEvent} from '../models/RaceEventResponseModel'
 import {AuthResponseData} from '../models/AuthResultModel'
 
 const LOG = new Logger('RaceApiService');
 let ADMIN_USER_NAME: string | undefined, ADMIN_PASSWORD: string | undefined, EXTERNAL_API: string | undefined;
+// eslint-disable-next-line prefer-const
 ({EXTERNAL_API, ADMIN_USER_NAME, ADMIN_PASSWORD} = process.env);
 let TOKEN: string | undefined;
 
@@ -19,7 +20,7 @@ const AUTH_REQ_OBJ: AxiosRequestConfig = {
 /**
  * Fetch Auth Token from external API
  */
-const fetchAuthToken = async () => {
+const fetchAuthToken = async ():Promise<void> => {
   await axios.post<AuthResponseData>(AUTH_REQ_OBJ.url, AUTH_REQ_OBJ.data).then(res => {
     const {data} = res;
     const {token} = data;
@@ -34,7 +35,8 @@ const fetchAuthToken = async () => {
 /**
  * Fetch Race Data from external API
  */
-const fetchRaceData = async () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fetchRaceData = async ():Promise<any> => {
   LOG.info('Fetching results from Race API');
   if (!TOKEN) {
     await fetchAuthToken();

@@ -1,19 +1,20 @@
-import {CallbackWithoutResult, connect, connection, set} from 'mongoose';
+import {connect, connection, set} from 'mongoose';
+import {StatusCodes} from 'http-status-codes';
 import {dbConnection} from './DBConfig';
 import ErrorBase from '../utils/error/ErrorBase';
 import ErrorMessages from '../utils/error/ErrorMessages';
 import ErrorCodes from '../utils/error/ErrorCodes';
-import {StatusCodes} from 'http-status-codes';
 import Logger from '../utils/Logger';
 
 const LOG = new Logger('DBConnection');
 let ENV: string | undefined;
+// eslint-disable-next-line prefer-const
 ({ENV} = process.env);
 
 /**
  * Set Up Database Connection
  */
-export const setUpDBConnection = () => {
+const setUpDBConnection = ():void => {
   if (ENV !== 'production') {
     set('debug', true);
   }
@@ -26,10 +27,6 @@ export const setUpDBConnection = () => {
   db.once("open", () => LOG.info("connected to database..."));
 }
 
-/**
- * Close Database Connection
- * @param callback
- */
-export const closetDBConnection = (callback: CallbackWithoutResult) => {
-  connection.close(false, callback);
+export default {
+  setUpDBConnection,
 }

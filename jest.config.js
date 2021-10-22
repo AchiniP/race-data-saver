@@ -17,4 +17,7 @@ module.exports = {
     'src/**/*.{ts,tsx,js,jsx}',
     '!src/**/*.d.ts',
   ],
+  setupFilesAfterEnv: [
+    './test/testdb.ts'
+  ],
 };

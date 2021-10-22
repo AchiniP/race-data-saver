@@ -15,8 +15,8 @@ interface RaceEventDoc extends mongoose.Document {
   time: number;
 }
 
-// @ts-ignore
-const RaceEventSchema = mongoose.Schema({
+
+const RaceEventSchema = new mongoose.Schema({
   event: {
     type: String
   },

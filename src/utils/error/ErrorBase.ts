@@ -11,15 +11,15 @@ class ErrorBase extends Error {
     this.httpStatusCode = httpStatusCode;
   }
 
-  getMessage() {
+  getMessage():string {
     return this.message;
   }
 
-  getErrorCode() {
+  getErrorCode():number {
     return this.errorCode;
   }
 
-  getHttpStatusCode() {
+  getHttpStatusCode():StatusCodes {
     return this.httpStatusCode;
   }
 }

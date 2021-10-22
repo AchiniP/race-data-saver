@@ -1,9 +1,8 @@
 import 'dotenv/config';
-import { closetDBConnection } from './repository/DBConnection';
 import Logger from './utils/Logger';
-const LOG = new Logger('index.js');
 import Service from './service'
 
+const LOG = new Logger('index.ts');
 
 /**
  * Entry point
@@ -17,14 +16,15 @@ const runWorker = async () => {
 /**
  * Gracefully handle SIGINT
  */
-process.on('SIGINT',  () => {
-  LOG.info('SIGTERM signal received.');
-  LOG.warn('Closing http server.');
-  closetDBConnection(() => {
-    LOG.info('MongoDb connection closed.');
-    process.exit(0);
-  });
+process.on('SIGINT', () => {
+  LOG.info('SIGINT signal received. Exit App!');
+  process.exit(1);
 });
+
+process.on('uncaughtException', err => {
+  LOG.error(`Unexpected Error occurred in Application. Exit App! Error: ${err}`);
+  process.exit(1)
+})
 
 runWorker();
 

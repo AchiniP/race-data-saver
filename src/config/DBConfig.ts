@@ -1,6 +1,7 @@
 import DatabaseModel from "../models/DatabaseModel";
 
 let DATABASE_URL: string | undefined;
+// eslint-disable-next-line prefer-const
 ({DATABASE_URL} = process.env);
 
 /**

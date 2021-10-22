@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createLogger, format, transports } from 'winston';
 
 const { colorize, combine, metadata, timestamp, printf } = format;
@@ -44,23 +45,23 @@ const appLogger = createLogger({
 class Logger {
     private readonly filename:string;
 
-    constructor(filename) {
+    constructor(filename: string) {
         this.filename = filename;
     }
 
-    error(message) {
+    error(message: string) {
         appLogger.error(message, { filename: this.filename });
     }
 
-    warn(message) {
+    warn(message: string) {
         appLogger.warn(message, { filename: this.filename });
     }
 
-    info(message) {
+    info(message: string) {
         appLogger.info(message, { filename: this.filename });
     }
 
-    debug(message) {
+    debug(message: string) {
         appLogger.debug(message, { filename: this.filename });
     }
 }
