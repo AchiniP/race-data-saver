@@ -2,7 +2,6 @@ import sinon from 'sinon';
 import axios from 'axios';
 import RaceEventService from '../src/service/RaceAPIService';
 import Service from '../src/service';
-import DBConnection from '../src/config/DBConnection';
 
 /**
  * Test RaceEventService.fetchRaceData()
@@ -61,22 +60,9 @@ describe('fetchAuthToken', () => {
  * init service
  */
 describe('init service', () => {
-  let stub;
-  let dbStub;
-  beforeEach(() => {
-    dbStub =  sinon.stub(DBConnection, 'setUpDBConnection');
-    stub = sinon.stub(axios, 'request')
-  });
-  afterEach(() => {
-    stub.restore();
-    dbStub.restore();
-  });
 
   it('should execute workers', async () => {
-    dbStub.returns(Promise.resolve(true));
-    stub.onCall(0).returns(Promise.resolve(mockAuthTokenResponse()))
-      .onCall(1).returns(Promise.resolve(mockEventResponse()));
-    const spy = jest.spyOn(Service, 'runService');
+    const spy = jest.spyOn(Service, 'runService').mockImplementation();
     await Service.runService();
     expect(spy).toBeCalled();
   });

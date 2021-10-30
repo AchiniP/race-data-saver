@@ -24,6 +24,7 @@ const changeLevelToUpperCase = format(info => {
 
 const appLogger = createLogger({
     level: Config.LOG_LEVEL,
+    silent: Config.NODE_ENV === 'test',
     exitOnError: false,
     format: combine(
         changeLevelToUpperCase(),

@@ -5,4 +5,5 @@ export default {
   EXTERNAL_API: process.env.EXTERNAL_API ?? '',
   ADMIN_USER_NAME: process.env.ADMIN_USER_NAME ?? '',
   ADMIN_PASSWORD: process.env.ADMIN_PASSWORD ?? '',
+  NODE_ENV: process.env.NODE_ENV ?? '',
 }

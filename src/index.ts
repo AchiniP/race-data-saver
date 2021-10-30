@@ -2,7 +2,7 @@ import 'dotenv/config';
 import Logger from './utils/Logger';
 import Service from './service'
 
-const LOG = new Logger('index.ts');
+const LOG = new Logger('index');
 
 /**
  * Entry point

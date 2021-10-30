@@ -22,7 +22,7 @@ const setUpDBConnection = ():void => {
     LOG.error(error);
     throw new ErrorBase(ErrorMessages.DB_CONNECTION_ERROR, ErrorCodes.DB_ERROR, StatusCodes.INTERNAL_SERVER_ERROR);
   });
-  db.once("open", () => LOG.info("connected to database..."));
+  db.once("open", () => LOG.debug("connected to database..."));
 }
 
 export default {

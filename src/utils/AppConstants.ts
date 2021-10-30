@@ -2,7 +2,6 @@ import {AxiosRequestConfig} from "axios";
 import Config from '../config/AppConfig';
 
 export const STATUS_DB_CONNECT = 'connect';
-export const STATUS_DB_SAVE = 'save';
 export const STATUS_START_SERVICE = 'start';
 export const STATUS_RETRY_SERVICE = 'retry';
 export const FETCH_DATA_REQ_OBJ = (token: string):AxiosRequestConfig => {
