@@ -15,7 +15,7 @@ const LOG = new Logger('Service');
  * Initialize worker threads
  * @returns {Promise<void>}
  */
-const initWorkers = async () => {
+const initWorker = async () => {
 
   const workerConfigFile = FileUtil.fileResolver('WorkerServiceConfig.ts');
   const apiWorkerFile = FileUtil.fileResolver('AppWorker.ts');
@@ -71,7 +71,7 @@ const handleAPIWorkerErrors = (apiWorker: Worker) => {
  * @returns {Promise<void>}
  */
 const runService = async (): Promise<void> => {
-  await initWorkers();
+  await initWorker();
 }
 
 export default {

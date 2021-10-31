@@ -3,7 +3,7 @@ import {StatusCodes} from 'http-status-codes';
 import RaceEventService from './RaceAPIService';
 import {STATUS_START_SERVICE, STATUS_RETRY_SERVICE, STATUS_DB_CONNECT} from "../utils/AppConstants";
 import Logger from "../utils/Logger";
-import {ErrorResponse} from "../models/Error.Model";
+import {ErrorResponse} from "../models/ErrorModel";
 import {IRaceEvent, RaceEventResponse} from "../models/RaceEventResponseModel";
 import {WorkerMessage} from "../models/WorkerMessage";
 import DBConnection from "../config/DBConnection";
